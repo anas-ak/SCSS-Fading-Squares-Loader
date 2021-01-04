@@ -1,0 +1,95 @@
+body {
+    background-color: #eee;
+}
+
+#container {
+    width: 20vw;
+    margin: 12.5vw auto;
+}
+
+h1 {
+    margin: 7.5vw 0 0 2.5vw;
+    text-align: center;
+    color: #555;
+    font-size: 3.5vw;
+    font-weight: 100;
+    font-family: Lato, Arial, Helvetica, sans-serif;
+}
+
+h1 span {
+    transition: all 0.2s;
+    animation: blink1 6s infinite;
+}
+
+h1 span:nth-child(2){
+    animation: blink2 6s infinite;
+}
+
+h1 span:nth-child(3){
+    animation: blink3 6s infinite;
+}
+
+.logo {
+    width: 20vw;
+    height: 20vw;
+    transform: rotate(45deg);
+}
+
+.row {
+    height: 20%;
+}
+
+.square {
+    float: left;
+    width: 19%;
+    width: 20%;
+    height: 100%;
+    transition: all 0.2s;
+    animation: warp 6s infinite alternate;
+
+    border-right-width: 0;
+    border-bottom-width: 0;
+}
+
+.square:nth-child(5n+5) {
+    border-right-width: 2px;
+}
+
+.row:nth-child(5) .square {
+    border-bottom-width: 2px;
+}
+
+@for $y from 1 through 5 {
+    @for $x from 1 through 5{
+        .row:nth-child(#{$y}) .square:nth-child(#{$x}){
+            animation-delay:calc(#{$y}s + #{$x}s - 2s);
+        }
+    }
+}
+
+@keyframes warp {
+    0%   { background-color: #eee; }
+    5%   { background-color: #555; }
+    50%  { background-color: #eee; }
+    100% { background-color: #eee; }
+}
+
+@keyframes blink1 {
+    0% {opacity: 0;}
+    25% {opacity: 1;}
+    100% {opacity: 1;}
+}
+
+@keyframes blink2 {
+    0% {opacity: 0;}
+    25% {opacity: 0;}
+    50% {opacity: 1;}
+    100% {opacity: 1;}
+}
+
+@keyframes blink3 {
+    0% {opacity: 0;}
+    50% {opacity: 0;}
+    75% {opacity: 1;}
+    100% {opacity: 1;}
+}
